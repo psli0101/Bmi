@@ -1,5 +1,6 @@
 package com.psli.bmi;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +22,14 @@ public class MainActivity extends AppCompatActivity {
         EditText height = (EditText) findViewById(R.id.ed_height);
         float w = Float.parseFloat(weight.getText().toString());
         float h = Float.parseFloat(height.getText().toString());
-        float bmi = w/(h*h);
+        float bmi = w / (h * h);
         Log.d("BMI", String.valueOf(bmi));
+        new AlertDialog.Builder(this)
+                .setTitle("你的BMI值")
+                .setMessage(bmi + "")
+                .setPositiveButton("OK", null)
+                .setNeutralButton("CANCEL", null)
+                .setNegativeButton("Test", null)
+                .show();
     }
 }
