@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,23 +14,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //getResources().getString(R.string.app_name);
+        Button bInfo = (Button) findViewById(R.id.b_info);
+        bInfo.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle(R.string.b_info)
+                            .setMessage(R.string.formula)
+                            .setPositiveButton(R.string.ok, null)
+                            .show();
+                }
+            }
+        );
     }
 
     public void bmi(View view) {
         //System.out.println("Cat");
         Log.d("MainActivity", "testing bmi method");
-        EditText weight = (EditText) findViewById(R.id.ed_weight);
-        EditText height = (EditText) findViewById(R.id.ed_height);
-        float w = Float.parseFloat(weight.getText().toString());
-        float h = Float.parseFloat(height.getText().toString());
+        EditText edWeight = (EditText) findViewById(R.id.ed_weight);
+        EditText edHeight = (EditText) findViewById(R.id.ed_height);
+        float w = Float.parseFloat(edWeight.getText().toString());
+        float h = Float.parseFloat(edHeight.getText().toString());
         float bmi = w / (h * h);
         Log.d("BMI", String.valueOf(bmi));
         new AlertDialog.Builder(this)
-                .setTitle("你的BMI值")
-                .setMessage(bmi + "")
-                .setPositiveButton("OK", null)
-                .setNeutralButton("CANCEL", null)
-                .setNegativeButton("Test", null)
+                .setTitle(R.string.bmi_title)
+                .setMessage(getString(R.string.msg)+bmi)
+                .setPositiveButton(R.string.ok, null)
+                .setNeutralButton(R.string.cancel, null)
+                .setNegativeButton(R.string.test, null)
                 .show();
     }
 }

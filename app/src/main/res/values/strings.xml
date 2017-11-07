@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Bmi</string>
+    <string name="bmi_title" translatable="false">My BMI</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="cancel" translatable="false">CANCEL</string>
+    <string name="test" translatable="false">Test</string>
+    <string name="weight">Weight(kg)</string>
+    <string name="height">Height(m)</string>
+    <string name="calculate_bmi">calculate BMI</string>
+    <string name="info">INFO</string>
+    <string name="msg">Your BMI is</string>
+    <string name="b_info">Infomation</string>
+    <string name="formula">Weight(kg) / Height(m) = BMI</string>
 </resources>
