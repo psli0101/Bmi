@@ -32,19 +32,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void bmi(View view) {
         //System.out.println("Cat");
-        Log.d("MainActivity", "testing bmi method");
+        //Log.d("MainActivity", "testing bmi method");
         EditText edWeight = (EditText) findViewById(R.id.ed_weight);
         EditText edHeight = (EditText) findViewById(R.id.ed_height);
         float w = Float.parseFloat(edWeight.getText().toString());
         float h = Float.parseFloat(edHeight.getText().toString());
         float bmi = w / (h * h);
-        Log.d("BMI", String.valueOf(bmi));
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.bmi_title)
-                .setMessage(getString(R.string.msg)+bmi)
-                .setPositiveButton(R.string.ok, null)
-                .setNeutralButton(R.string.cancel, null)
-                .setNegativeButton(R.string.test, null)
-                .show();
+        if(bmi < 20) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.bmi_title)
+                    .setMessage(getString(R.string.msg)+bmi+", 請多吃點")
+                    .setPositiveButton(R.string.ok, null)
+                    .setNeutralButton(R.string.cancel, null)
+                    .setNegativeButton(R.string.test, null)
+                    .show();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.bmi_title)
+                    .setMessage(getString(R.string.msg)+bmi)
+                    .setPositiveButton(R.string.ok, null)
+                    .setNeutralButton(R.string.cancel, null)
+                    .setNegativeButton(R.string.test, null)
+                    .show();
+        }
+        //Log.d("BMI", String.valueOf(bmi));
+
     }
 }
