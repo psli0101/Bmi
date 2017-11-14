@@ -37,25 +37,32 @@ public class MainActivity extends AppCompatActivity {
         EditText edHeight = (EditText) findViewById(R.id.ed_height);
         float w = Float.parseFloat(edWeight.getText().toString());
         float h = Float.parseFloat(edHeight.getText().toString());
-        float bmi = w / (h * h);
-        if(bmi < 20) {
+        if ( h > 3.0 ) {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.bmi_title)
-                    .setMessage(getString(R.string.msg)+bmi+", 請多吃點")
+                    .setMessage("身高單位應為公尺")
                     .setPositiveButton(R.string.ok, null)
-                    .setNeutralButton(R.string.cancel, null)
-                    .setNegativeButton(R.string.test, null)
                     .show();
         } else {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.bmi_title)
-                    .setMessage(getString(R.string.msg)+bmi)
-                    .setPositiveButton(R.string.ok, null)
-                    .setNeutralButton(R.string.cancel, null)
-                    .setNegativeButton(R.string.test, null)
-                    .show();
+            float bmi = w / (h * h);
+            if(bmi < 20) {
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.bmi_title)
+                        .setMessage(getString(R.string.msg)+bmi+", 請多吃點")
+                        .setPositiveButton(R.string.ok, null)
+                        .setNeutralButton(R.string.cancel, null)
+                        .setNegativeButton(R.string.test, null)
+                        .show();
+            } else {
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.bmi_title)
+                        .setMessage(getString(R.string.msg)+bmi)
+                        .setPositiveButton(R.string.ok, null)
+                        .setNeutralButton(R.string.cancel, null)
+                        .setNegativeButton(R.string.test, null)
+                        .show();
+            }
+            //Log.d("BMI", String.valueOf(bmi));
         }
-        //Log.d("BMI", String.valueOf(bmi));
-
     }
 }
