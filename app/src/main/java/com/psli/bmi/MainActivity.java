@@ -1,5 +1,7 @@
 package com.psli.bmi;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText edWeight, edHeight;
+    private Button bInfo;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("MainActivity", "onCreate");
         setContentView(R.layout.activity_main);
         //getResources().getString(R.string.app_name);
-        Button bInfo = (Button) findViewById(R.id.b_info);
+        findView();
         bInfo.setOnClickListener(
             new View.OnClickListener() {
                 @Override
@@ -30,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    public void findView() {
+        this.edWeight = (EditText) findViewById(R.id.ed_weight);
+        this.edHeight = (EditText) findViewById(R.id.ed_height);
+        this.bInfo = (Button) findViewById(R.id.b_info);
+        this.intent = new Intent(this, ResultActivity.class);
+    }
+
     public void bmi(View view) {
         //System.out.println("Cat");
         //Log.d("MainActivity", "testing bmi method");
-        EditText edWeight = (EditText) findViewById(R.id.ed_weight);
-        EditText edHeight = (EditText) findViewById(R.id.ed_height);
         float w = Float.parseFloat(edWeight.getText().toString());
         float h = Float.parseFloat(edHeight.getText().toString());
         if ( h > 3.0 ) {
@@ -45,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         } else {
             float bmi = w / (h * h);
-            if(bmi < 20) {
+            intent.putExtra("EX_BMI", bmi);
+            startActivity(intent);
+            /*if(bmi < 20) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.bmi_title)
                         .setMessage(getString(R.string.msg)+bmi+", 請多吃點")
@@ -61,8 +74,44 @@ public class MainActivity extends AppCompatActivity {
                         .setNeutralButton(R.string.cancel, null)
                         .setNegativeButton(R.string.test, null)
                         .show();
-            }
+            }*/
             //Log.d("BMI", String.valueOf(bmi));
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("MainActivity", "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("MainActivity", "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MainActivity", "onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("MainActivity", "onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("MainActivity", "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("MainActivity", "onRestart");
     }
 }
